@@ -1,13 +1,18 @@
-﻿using System;
+﻿using PathFindingBot.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace PathFindingBot
 {
-    public class DjikstraPathFinder : IPathFinder
+    public class DjikstraPathFinder : PathFinderBase
     {
-        public List<Node> GetShortestPath()
+        public DjikstraPathFinder(Map map) : base(map)
+        {
+        }
+
+        public override IList<Node> GetShortestPath()
         {
             Search();
             var shortestPath = new List<Node>();
@@ -16,16 +21,8 @@ namespace PathFindingBot
             shortestPath.Reverse();
             return shortestPath;
         }
-
-        private void BuildShortestPath(List<Node> list, Node node)
-        {
-            if (node.NearestToStart == null)
-                return;
-            list.Add(node.NearestToStart);
-            BuildShortestPath(list, node.NearestToStart);
-        }
-
-        private void Search()
+        
+        protected override void Search()
         {
             Start.MinCostToStart = 0;
             var prioQueue = new List<Node>();

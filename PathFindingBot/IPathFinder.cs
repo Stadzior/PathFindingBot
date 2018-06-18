@@ -1,6 +1,5 @@
-﻿using System;
+﻿using PathFindingBot.Model;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PathFindingBot
 {
